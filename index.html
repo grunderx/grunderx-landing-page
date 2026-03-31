@@ -36,8 +36,10 @@
             --color-tile-border: rgba(0, 0, 0, 0.06);
             --color-discord: #5865F2;
             --color-discord-hover: #4752c4;
-            --color-twitter: #1DA1F2;
-            --color-twitter-hover: #0d8bd9;
+            --color-x: #000000;
+            --color-x-hover: #333333;
+            --color-anilist: #02A9FF;
+            --color-anilist-hover: #0290db;
         }
 
         html {
@@ -367,14 +369,29 @@
         }
 
         /* Social button styles */
-        .btn-twitter {
-            background-color: var(--color-twitter);
-            border-color: var(--color-twitter);
+        .social-icon-only {
+            font-size: 1.5rem;
+        }
+
+        .btn-anilist {
+            background-color: var(--color-anilist);
+            border-color: var(--color-anilist);
             color: #fff;
         }
-        .btn-twitter:hover {
-            background-color: var(--color-twitter-hover);
-            border-color: var(--color-twitter-hover);
+        .btn-anilist:hover {
+            background-color: var(--color-anilist-hover);
+            border-color: var(--color-anilist-hover);
+            color: #fff;
+        }
+
+        .btn-x {
+            background-color: var(--color-x);
+            border-color: var(--color-x);
+            color: #fff;
+        }
+        .btn-x:hover {
+            background-color: var(--color-x-hover);
+            border-color: var(--color-x-hover);
             color: #fff;
         }
 
@@ -435,7 +452,7 @@
                     <i class="ti ti-device-laptop tile-icon"></i>
                     <div class="tile-text">
                         <span class="tile-label">Apps</span>
-                        <span class="tile-hint">View apps</span>
+                        <span class="tile-hint">Apps that I'm hosting</span>
                     </div>
                 </div>
                 <div class="tile tile-socials" data-bs-toggle="modal" data-bs-target="#socialsModal" role="button" tabindex="0">
@@ -549,11 +566,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-grid gap-3">
-                        <a href="https://discord.com/users/609359548066562048" target="_blank" class="btn btn-discord modal-btn fw-semibold">
-                            <i class="ti ti-brand-discord"></i> Discord
+                        <a href="https://discord.com/users/609359548066562048" target="_blank" class="btn btn-discord modal-btn fw-semibold social-icon-only">
+                            <i class="ti ti-brand-discord"></i>
                         </a>
-                        <a href="https://x.com/GrunderX_" target="_blank" class="btn btn-twitter modal-btn fw-semibold">
-                            <i class="ti ti-brand-twitter"></i> Twitter (now known as X)
+                        <a href="https://x.com/GrunderX_" target="_blank" class="btn btn-x modal-btn fw-semibold social-icon-only">
+                            <i class="ti ti-brand-x"></i>
+                        </a>
+                        <a href="https://anilist.co/user/GrunderX/" target="_blank" class="btn btn-anilist modal-btn fw-semibold">
+                            AniList
                         </a>
                     </div>
                 </div>
