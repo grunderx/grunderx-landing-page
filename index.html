@@ -85,6 +85,87 @@
             font-weight: 400;
         }
 
+        .about-section:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .about-section-header i {
+            color: var(--color-yuuka);
+            font-size: 1.25rem;
+        }
+
+        .about-section-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--color-heading);
+            margin: 0;
+        }
+
+        .about-section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-yuuka), transparent);
+            border-radius: 1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .interest-card {
+            background: #f4f2fa;
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            transition: background 0.2s ease;
+        }
+
+        .interest-card:hover {
+            background: #ece9f6;
+        }
+
+        .interest-card i {
+            font-size: 1.35rem;
+            color: var(--color-yuuka);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .interest-card-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .interest-card-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-heading);
+        }
+
+        .interest-card-desc {
+            font-size: 0.78rem;
+            color: var(--color-text-hint);
+            line-height: 1.4;
+        }
+
+        @media (max-width: 576px) {
+            .interest-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .intro-text {
             color: var(--color-text);
             font-size: 0.95rem;
@@ -372,17 +453,65 @@
 
     <!-- About Modal -->
     <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="aboutModalLabel"><i class="ti ti-user"></i> About Me</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="intro-text mb-2">Hello! my name is GrunderX.</p>
-                    <p class="intro-text mb-2">If my name sounds familiar, hello fellow Ace Combat fan! Or maybe you just know German or <a href="http://grunders.urbanup.com/7153397" target="_blank"><span class="fst-italic">that slang</span></a>.</p>
-                    <p class="intro-text mb-2">For those who don't know, my name is based on Gr&uuml;nder Industries, an antagonist company from the Ace Combat franchise.</p>
-                    <p class="intro-text fw-semibold mb-0">Anyway, enjoy whatever you wanna see or do here.</p>
+                    <div class="about-section">
+                        <div class="about-section-header">
+                            <i class="ti ti-hand-wave"></i>
+                            <h6 class="about-section-title">Introduction</h6>
+                        </div>
+                        <div class="about-section-divider"></div>
+                        <p class="intro-text mb-2">Hello there! Welcome to this landing page of mine. It's a pleasure for you to visit this site.</p>
+                        <p class="intro-text mb-2">My name is GrunderX. It's supposed to be Gr&uuml;nderX (spelled GroonderX), but I omit the umlaut for convenience sake. You can call me whatever, though. People have called me Grun, Grunder, Gruntol, etc.</p>
+                        <p class="intro-text mb-2">I'm a massive anime or anime-aligned media fan (a weeb). I used to loathe weebs because I thought they were all disgusting freaks. But then Covid happened during college. I was bored out of my mind when I finally found some cute and funny (😭) clips of Bocchi (not BTR Bocchi, the other Bocchi). After that, I spiraled down the rabbit hole of anime, and I started consuming other medias too, such as manga, light novel, visual novel, gacha games. I even have my own official merchandise collection.</p>
+                        <p class="intro-text mb-2">Speaking of gacha games, I mainly play two now: Blue Archive and Girls' Frontline 2. I've played BA the longest, starting around Q4 2022. It's been a part of my daily life ever since and I really, REALLY love it. I don't really like the gameplay, but the other parts of it are great. The whole theme of schoolgirls armed with guns with cute designs sticks with me a lot. And the story is great too! As for GFL2, I had been interested in the GFL franchise for quite a long time. But I heard that getting into the original game was (and still is) a pain in the ass. So when GFL2 got released I hopped straight into it. And so far, I love it too. It gives me a very in-depth story and deep lore that BA lacks. And also fully 3D models and assets that I wish BA also had.</p>
+                        <p class="intro-text mb-2">Other gacha games that I've played are Genshin Impact, Honkai Star Rail, Wuthering Waves, Uma Musume, and Gakuen Idolmaster.</p>
+                        <p class="intro-text mb-2">For "normal" games, I'm into the Ace Combat franchise. It's my childhood game that I spent a lot of time with. I used to play AC5, AC0, and AC04 a lot on my PlayStation 2. In fact, my name is inspired from, you guessed it fellow AC fans, Gründer Industries! The evil company that used to be South Belka Munitions Factory, now under Osean control. Man I can't wait for AC8...</p>
+                        <p class="intro-text mb-0">I think that's enough yapping from me. Have a good day!</p>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="about-section-header">
+                            <i class="ti ti-heart"></i>
+                            <h6 class="about-section-title">Interests</h6>
+                        </div>
+                        <div class="about-section-divider"></div>
+                        <div class="interest-grid">
+                            <div class="interest-card">
+                                <i class="ti ti-movie"></i>
+                                <div class="interest-card-text">
+                                    <span class="interest-card-title">Japanese Media</span>
+                                    <span class="interest-card-desc">Anime, manga, light novel, visual novel</span>
+                                </div>
+                            </div>
+                            <div class="interest-card">
+                                <i class="ti ti-device-gamepad-2"></i>
+                                <div class="interest-card-text">
+                                    <span class="interest-card-title">Games</span>
+                                    <span class="interest-card-desc">Blue Archive, Girls' Frontline 2, Ace Combat</span>
+                                </div>
+                            </div>
+                            <div class="interest-card">
+                                <i class="ti ti-music"></i>
+                                <div class="interest-card-text">
+                                    <span class="interest-card-title">Music</span>
+                                    <span class="interest-card-desc">Anisongs, vocaloid, patriotic songs, church hymns, western pop</span>
+                                </div>
+                            </div>
+                            <div class="interest-card">
+                                <i class="ti ti-code"></i>
+                                <div class="interest-card-text">
+                                    <span class="interest-card-title">Coding</span>
+                                    <span class="interest-card-desc">Web development, infrastructure</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
