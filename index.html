@@ -129,6 +129,13 @@
         .tile-apps .tile-icon { color: var(--color-miyo); }
         .tile-socials .tile-icon { color: var(--color-ichika); }
 
+        .tile-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
         .tile-label {
             font-weight: 600;
             font-size: 1rem;
@@ -139,6 +146,30 @@
             font-size: 0.75rem;
             color: var(--color-text-hint);
             margin-top: -0.25rem;
+        }
+
+        @media (max-width: 576px) {
+            .tile {
+                flex-direction: row;
+                max-width: 100%;
+                min-width: 0;
+                flex: 1 1 100%;
+                padding: 1rem 1.25rem;
+                gap: 1rem;
+                border-radius: 12px;
+            }
+
+            .tile-icon {
+                font-size: 1.5rem;
+            }
+
+            .tile-text {
+                align-items: flex-start;
+            }
+
+            .tile-hint {
+                margin-top: 0;
+            }
         }
 
         /* Modal animation */
@@ -279,18 +310,24 @@
             <div class="tiles-container d-flex flex-wrap justify-content-center gap-4 mt-3 animate-in animate-delay-2">
                 <div class="tile tile-about" data-bs-toggle="modal" data-bs-target="#aboutModal" role="button" tabindex="0">
                     <i class="ti ti-user tile-icon"></i>
-                    <span class="tile-label">About Me</span>
-                    <span class="tile-hint">Who am I?</span>
+                    <div class="tile-text">
+                        <span class="tile-label">About Me</span>
+                        <span class="tile-hint">Who am I?</span>
+                    </div>
                 </div>
                 <div class="tile tile-apps" data-bs-toggle="modal" data-bs-target="#appsModal" role="button" tabindex="0">
                     <i class="ti ti-device-laptop tile-icon"></i>
-                    <span class="tile-label">Apps</span>
-                    <span class="tile-hint">View apps</span>
+                    <div class="tile-text">
+                        <span class="tile-label">Apps</span>
+                        <span class="tile-hint">View apps</span>
+                    </div>
                 </div>
                 <div class="tile tile-socials" data-bs-toggle="modal" data-bs-target="#socialsModal" role="button" tabindex="0">
                     <i class="ti ti-message tile-icon"></i>
-                    <span class="tile-label">Socials</span>
-                    <span class="tile-hint">Get in touch</span>
+                    <div class="tile-text">
+                        <span class="tile-label">Socials</span>
+                        <span class="tile-hint">Get in touch</span>
+                    </div>
                 </div>
             </div>
 
