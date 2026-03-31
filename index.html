@@ -26,12 +26,12 @@
             --color-heading: #1a1a2e;
             --color-text: #555;
             --color-text-hint: #888;
-            --color-accent-about: #6A5ACD;
-            --color-accent-apps: #5B8C8A;
-            --color-accent-socials: #CC2233;
-            --color-bg-start: #f5f7fa;
-            --color-bg-mid: #e4e9f0;
-            --color-bg-end: #f0f2f5;
+            --color-yuuka: #6A5ACD;
+            --color-miyo: #5B8C8A;
+            --color-ichika: #CC2233;
+            --color-bg-start: var(--color-yuuka);
+            --color-bg-mid: var(--color-miyo);
+            --color-bg-end: var(--color-ichika);
             --color-tile-bg: #fff;
             --color-tile-border: rgba(0, 0, 0, 0.06);
             --color-discord: #5865F2;
@@ -87,58 +87,59 @@
 
         /* Animated tiles */
         .tile {
-            background: var(--color-tile-bg);
-            border: 1px solid var(--color-tile-border);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
+            background: #f4f2fa;
+            border: none;
+            border-radius: 14px;
+            padding: 1.5rem 1.25rem;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: none;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
-            min-width: 160px;
-            flex: 1 1 160px;
-            max-width: 200px;
+            gap: 0.6rem;
+            min-width: 140px;
+            flex: 1 1 140px;
+            max-width: 180px;
         }
 
         .tiles-container {
-            max-width: 660px;
+            max-width: 620px;
         }
 
         .tile:hover {
-            transform: scale(1.05) translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(106, 90, 205, 0.15);
+            background: #ece9f6;
         }
 
         .tile:active {
-            transform: scale(0.98);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(0);
+            box-shadow: none;
         }
 
         .tile-icon {
-            font-size: 2.25rem;
+            font-size: 2rem;
             line-height: 1;
         }
 
+        .tile-about .tile-icon { color: var(--color-yuuka); }
+        .tile-apps .tile-icon { color: var(--color-miyo); }
+        .tile-socials .tile-icon { color: var(--color-ichika); }
+
         .tile-label {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--color-heading);
         }
 
         .tile-hint {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--color-text-hint);
             margin-top: -0.25rem;
         }
-
-        .tile-about { border-top: 3px solid var(--color-accent-about); }
-        .tile-apps { border-top: 3px solid var(--color-accent-apps); }
-        .tile-socials { border-top: 3px solid var(--color-accent-socials); }
 
         /* Modal animation */
         @keyframes modalSlideIn {
@@ -242,11 +243,21 @@
             color: #fff;
         }
 
+        /* Main card */
+        .main-card {
+            background: var(--color-tile-bg);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 640px;
+        }
+
         /* Divider */
         .section-divider {
             width: 48px;
             height: 3px;
-            background: var(--color-accent-about);
+            background: var(--color-yuuka);
             border-radius: 2px;
             margin: 0 auto;
         }
@@ -254,31 +265,35 @@
 
 </head>
 <body>
-    <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 px-4 py-5">
+    <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 px-3 py-5">
 
-        <!-- Intro Section -->
-        <div class="text-center mb-4 animate-in animate-delay-1" style="max-width: 540px;">
-            <h1 class="brand-heading mb-3">GrunderX</h1>
-            <div class="section-divider mb-3"></div>
-        </div>
+        <div class="main-card animate-in animate-delay-1">
 
-        <!-- Tiles -->
-        <div class="tiles-container d-flex flex-wrap justify-content-center gap-4 mt-3 animate-in animate-delay-2">
-            <div class="tile tile-about" data-bs-toggle="modal" data-bs-target="#aboutModal" role="button" tabindex="0">
-                <i class="ti ti-user tile-icon"></i>
-                <span class="tile-label">About Me</span>
-                <span class="tile-hint">Who am I?</span>
+            <!-- Intro Section -->
+            <div class="text-center mb-4" style="max-width: 540px; margin: 0 auto;">
+                <h1 class="brand-heading mb-3">GrunderX</h1>
+                <div class="section-divider mb-3"></div>
             </div>
-            <div class="tile tile-apps" data-bs-toggle="modal" data-bs-target="#appsModal" role="button" tabindex="0">
-                <i class="ti ti-device-laptop tile-icon"></i>
-                <span class="tile-label">Apps</span>
-                <span class="tile-hint">View apps</span>
+
+            <!-- Tiles -->
+            <div class="tiles-container d-flex flex-wrap justify-content-center gap-4 mt-3 animate-in animate-delay-2">
+                <div class="tile tile-about" data-bs-toggle="modal" data-bs-target="#aboutModal" role="button" tabindex="0">
+                    <i class="ti ti-user tile-icon"></i>
+                    <span class="tile-label">About Me</span>
+                    <span class="tile-hint">Who am I?</span>
+                </div>
+                <div class="tile tile-apps" data-bs-toggle="modal" data-bs-target="#appsModal" role="button" tabindex="0">
+                    <i class="ti ti-device-laptop tile-icon"></i>
+                    <span class="tile-label">Apps</span>
+                    <span class="tile-hint">View apps</span>
+                </div>
+                <div class="tile tile-socials" data-bs-toggle="modal" data-bs-target="#socialsModal" role="button" tabindex="0">
+                    <i class="ti ti-message tile-icon"></i>
+                    <span class="tile-label">Socials</span>
+                    <span class="tile-hint">Get in touch</span>
+                </div>
             </div>
-            <div class="tile tile-socials" data-bs-toggle="modal" data-bs-target="#socialsModal" role="button" tabindex="0">
-                <i class="ti ti-message tile-icon"></i>
-                <span class="tile-label">Socials</span>
-                <span class="tile-hint">Get in touch</span>
-            </div>
+
         </div>
 
     </div>
