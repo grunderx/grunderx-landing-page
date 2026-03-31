@@ -14,73 +14,337 @@
 
     <title>GrunderX's Page</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
     <style>
+        :root {
+            --color-heading: #1a1a2e;
+            --color-text: #555;
+            --color-text-hint: #888;
+            --color-accent-about: #00b894;
+            --color-accent-apps: #4f6ef7;
+            --color-accent-socials: #e84393;
+            --color-bg-start: #f5f7fa;
+            --color-bg-mid: #e4e9f0;
+            --color-bg-end: #f0f2f5;
+            --color-tile-bg: #fff;
+            --color-tile-border: rgba(0, 0, 0, 0.06);
+            --color-discord: #5865F2;
+            --color-discord-hover: #4752c4;
+            --color-twitter: #1DA1F2;
+            --color-twitter-hover: #0d8bd9;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-mid) 50%, var(--color-bg-end) 100%);
+            min-height: 100vh;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.3s; }
+        .animate-delay-3 { animation-delay: 0.5s; }
+
+        /* Heading style */
+        .brand-heading {
+            font-size: 2.75rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--color-heading);
+        }
+
+        .intro-text {
+            color: var(--color-text);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Animated tiles */
+        .tile {
+            background: var(--color-tile-bg);
+            border: 1px solid var(--color-tile-border);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 160px;
+            flex: 1 1 160px;
+            max-width: 200px;
+        }
+
+        .tiles-container {
+            max-width: 660px;
+        }
+
+        .tile:hover {
+            transform: scale(1.05) translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .tile:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .tile-icon {
+            font-size: 2.25rem;
+            line-height: 1;
+        }
+
+        .tile-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-heading);
+        }
+
+        .tile-hint {
+            font-size: 0.8rem;
+            color: var(--color-text-hint);
+            margin-top: -0.25rem;
+        }
+
+        .tile-about { border-top: 3px solid var(--color-accent-about); }
+        .tile-apps { border-top: 3px solid var(--color-accent-apps); }
+        .tile-socials { border-top: 3px solid var(--color-accent-socials); }
+
+        /* Modal animation */
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes modalSlideOut {
+            from {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+        }
+
+        .modal.fade .modal-dialog {
+            transform: scale(0.9) translateY(20px);
+            transition: none;
+        }
+
+        .modal.show .modal-dialog {
+            transform: scale(1) translateY(0);
+            animation: modalSlideIn 0.3s ease forwards;
+        }
+
+        .modal.fade:not(.show) .modal-dialog {
+            animation: modalSlideOut 0.2s ease forwards;
+        }
+
+        /* Modal styling */
+        .modal-content {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .modal-header {
+            border-bottom: none;
+            padding: 1.5rem 1.5rem 0.5rem;
+        }
+
+        .modal-body {
+            padding: 1rem 1.5rem 1.5rem;
+        }
+
+        .modal-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.3;
+        }
+
+        /* Modal buttons */
+        .modal-btn {
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .modal-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Social button styles */
         .btn-twitter {
-            background-color: #1DA1F2;
-            border-color: #1DA1F2;
+            background-color: var(--color-twitter);
+            border-color: var(--color-twitter);
             color: #fff;
         }
         .btn-twitter:hover {
-            background-color: #0d8bd9;
-            border-color: #0d8bd9;
+            background-color: var(--color-twitter-hover);
+            border-color: var(--color-twitter-hover);
             color: #fff;
         }
 
         .btn-discord {
-            background-color: #5865F2;
-            border-color: #5865F2;
+            background-color: var(--color-discord);
+            border-color: var(--color-discord);
             color: #fff;
         }
         .btn-discord:hover {
-            background-color: #4752c4;
-            border-color: #4752c4;
+            background-color: var(--color-discord-hover);
+            border-color: var(--color-discord-hover);
             color: #fff;
         }
+
+        /* Divider */
+        .section-divider {
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent-apps), var(--color-accent-socials));
+            border-radius: 2px;
+            margin: 0 auto;
+        }
     </style>
-    
-    </head>
-    <body class="bg-light">
-        <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 px-4 py-2">
 
-            <div class="text-center mb-4">
-                <h1 class="fw-bold">GrunderX</h1>
-                <p class="text-muted mb-1">Hello! my name is GrunderX.</p>
-                <p class="text-muted mb-1">If my name sounds familiar, hello fellow Ace Combat fan! Or maybe you just know German or <a href="http://grunders.urbanup.com/7153397" target="_blank"><span class="fst-italic">that slang</span></a>.</p>
-                <p class="text-muted mb-1">For those who don't know, my name is based on Gründer Industries, an antagonist company from the Ace Combat franchise.</p>
-                <p class="text-muted fw-bold mb-0">Anyway, enjoy whatever you wanna see or do here.</p>
-            </div>
-            
-            <div class="text-center mb-3">
-                <h2 class="fw-bold">Apps</h2>
-            </div>
+</head>
+<body>
+    <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100 px-4 py-5">
 
-            <div class="d-grid gap-3 col-11 col-sm-8 col-md-6 col-lg-4 mb-4">
-                <a href="https://ba-sorter.grunderx.net" target="_blank" class="btn btn-outline-primary shadow-sm">
-                    Blue Archive Sorter
-                </a>
-                <a class="btn btn-outline-secondary shadow-sm disabled">
-                    Others Coming Soon!
-                </a>
-            </div>
-
-            <div class="text-center mb-3">
-                <h2 class="fw-bold">Socials</h2>
-            </div>
-
-            <div class="d-grid gap-3 col-11 col-sm-8 col-md-6 col-lg-4 mb-4">
-                <a href="https://discord.com/users/609359548066562048" target="_blank" class="btn btn-discord shadow-sm fw-bold">
-                    Discord
-                </a>
-                <a href="https://x.com/GrunderX_" target="_blank" class="btn btn-twitter shadow-sm fw-bold">
-                    Twitter (now known as X)
-                </a>
-            </div>
-
+        <!-- Intro Section -->
+        <div class="text-center mb-4 animate-in animate-delay-1" style="max-width: 540px;">
+            <h1 class="brand-heading mb-3">GrunderX</h1>
+            <div class="section-divider mb-3"></div>
         </div>
 
-        <script src="/static/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    
-    </body>
+        <!-- Tiles -->
+        <div class="tiles-container d-flex flex-wrap justify-content-center gap-4 mt-3 animate-in animate-delay-2">
+            <div class="tile tile-about" data-bs-toggle="modal" data-bs-target="#aboutModal" role="button" tabindex="0">
+                <span class="tile-icon">&#128100;</span>
+                <span class="tile-label">About Me</span>
+                <span class="tile-hint">Who am I?</span>
+            </div>
+            <div class="tile tile-apps" data-bs-toggle="modal" data-bs-target="#appsModal" role="button" tabindex="0">
+                <span class="tile-icon">&#128187;</span>
+                <span class="tile-label">Apps</span>
+                <span class="tile-hint">View apps</span>
+            </div>
+            <div class="tile tile-socials" data-bs-toggle="modal" data-bs-target="#socialsModal" role="button" tabindex="0">
+                <span class="tile-icon">&#128172;</span>
+                <span class="tile-label">Socials</span>
+                <span class="tile-hint">Get in touch</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">&#128100; About Me</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="intro-text mb-2">Hello! my name is GrunderX.</p>
+                    <p class="intro-text mb-2">If my name sounds familiar, hello fellow Ace Combat fan! Or maybe you just know German or <a href="http://grunders.urbanup.com/7153397" target="_blank"><span class="fst-italic">that slang</span></a>.</p>
+                    <p class="intro-text mb-2">For those who don't know, my name is based on Gr&uuml;nder Industries, an antagonist company from the Ace Combat franchise.</p>
+                    <p class="intro-text fw-semibold mb-0">Anyway, enjoy whatever you wanna see or do here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apps Modal -->
+    <div class="modal fade" id="appsModal" tabindex="-1" aria-labelledby="appsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appsModalLabel">&#128187; Apps</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-grid gap-3">
+                        <a href="https://ba-sorter.grunderx.net" target="_blank" class="btn btn-outline-primary modal-btn">
+                            Blue Archive Sorter
+                        </a>
+                        <a class="btn btn-outline-secondary modal-btn disabled">
+                            Others Coming Soon!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Socials Modal -->
+    <div class="modal fade" id="socialsModal" tabindex="-1" aria-labelledby="socialsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="socialsModalLabel">&#128172; Socials</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-grid gap-3">
+                        <a href="https://discord.com/users/609359548066562048" target="_blank" class="btn btn-discord modal-btn fw-semibold">
+                            Discord
+                        </a>
+                        <a href="https://x.com/GrunderX_" target="_blank" class="btn btn-twitter modal-btn fw-semibold">
+                            Twitter (now known as X)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+</body>
 </html>
